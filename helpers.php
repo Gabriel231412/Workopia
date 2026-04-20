@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Obține calea de bază a proiectului
+ */
 function basePath($path = '') {
     return __DIR__ . '/' . $path;
 }
 
+/**
+ * Load a view
+ */
 function loadView($name) {
     $viewPath = basePath("views/{$name}.view.php");
+
     if (file_exists($viewPath)) {
         require $viewPath;
     } else {
@@ -13,11 +20,34 @@ function loadView($name) {
     }
 }
 
+/**
+ * Load a partial
+ */
 function loadPartial($name) {
     $partialPath = basePath("views/partials/{$name}.php");
+
     if (file_exists($partialPath)) {
         require $partialPath;
     } else {
         echo "Partial '{$name}' not found.";
     }
+}
+
+/**
+ * Inspectează o valoare (fără să oprească scriptul)
+ */
+function inspect($value) {
+    echo '<pre>';
+    var_dump($value);
+    echo '</pre>';
+}
+
+/**
+ * Inspectează o valoare și OPREȘTE execuția (die)
+ */
+function inspectAndDie($value) {
+    echo '<pre>';
+    var_dump($value);
+    echo '</pre>';
+    die();
 }
